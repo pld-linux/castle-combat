@@ -12,6 +12,8 @@ Patch0:		%{name}-SDL_net.patch
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_net-devel
 BuildRequires:	SDL_mixer-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	libpng-devel
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -24,9 +26,9 @@ castles, he loses. The last surviving player wins.
 
 %description -l pl
 castle-combat to gra, w której do czterech graczy buduje zamkowe mury,
-ustawia nich armaty i strzela w mury swoich wrogów. Je¿eli gracz nie
-mo¿e otoczyæ ani jednego ze swoich zamków murami przegrywa. Wygrywa
-ostatni, który przetrwa.
+ustawia na nich armaty i strzela w mury swoich wrogów. Je¿eli gracz
+nie mo¿e otoczyæ ani jednego ze swoich zamków murami przegrywa.
+Wygrywa ostatni, który przetrwa.
 
 %prep
 %setup -q
@@ -41,6 +43,7 @@ ostatni, który przetrwa.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 

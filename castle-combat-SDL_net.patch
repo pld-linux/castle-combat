@@ -1,0 +1,61 @@
+diff -Nru castle-combat-0.7.4-orig/configure.in castle-combat-0.7.4/configure.in
+--- castle-combat-0.7.4-orig/configure.in	2003-06-24 21:28:56.000000000 +0200
++++ castle-combat-0.7.4/configure.in	2004-02-13 15:36:16.511523883 +0100
+@@ -56,7 +56,7 @@
+ 
+ ######## Set compiler flags and libraries
+ CFLAGS="$CFLAGS $SDL_CFLAGS -DDATADIR=\"\\\"$datadir/castle-combat\\\"\" -Wall"
+-LIBS="-LSDL_net -lSDL_net $SDL_LIBS $LIBS $INETLIB"
++LIBS="-lSDL_net $SDL_LIBS $LIBS $INETLIB"
+ 
+ AC_SUBST(SOUND)
+ 
+@@ -64,7 +64,6 @@
+ AC_OUTPUT([
+ Makefile
+ src/Makefile
+-src/SDL_net/Makefile
+ data/Makefile
+ data/gfx/Makefile
+ data/sound/Makefile
+diff -Nru castle-combat-0.7.4-orig/src/main.c castle-combat-0.7.4/src/main.c
+--- castle-combat-0.7.4-orig/src/main.c	2003-06-24 21:27:34.000000000 +0200
++++ castle-combat-0.7.4/src/main.c	2004-02-13 15:29:50.063062345 +0100
+@@ -24,7 +24,7 @@
+ #include "main.h"
+ #include "options.h"
+ #include "time.h"
+-#include "SDL_net/SDL_net.h"
++#include <SDL/SDL_net.h>
+ #include "server.h"
+ 
+     int fullscreen=1, CityDestroyed[6]={0,0,0,0,0,0},
+diff -Nru castle-combat-0.7.4-orig/src/Makefile.am castle-combat-0.7.4/src/Makefile.am
+--- castle-combat-0.7.4-orig/src/Makefile.am	2002-03-06 15:02:37.000000000 +0100
++++ castle-combat-0.7.4/src/Makefile.am	2004-02-13 15:21:08.816141243 +0100
+@@ -1,6 +1,6 @@
+ bin_PROGRAMS = castle-combat castle-combat-server
+ 
+-SUBDIRS = SDL_net
++#SUBDIRS = SDL_net
+ 
+ castle_combat_LDADD = -lz -lpng @SOUND@
+ 
+diff -Nru castle-combat-0.7.4-orig/src/net.c castle-combat-0.7.4/src/net.c
+--- castle-combat-0.7.4-orig/src/net.c	2003-05-02 14:56:54.000000000 +0200
++++ castle-combat-0.7.4/src/net.c	2004-02-13 15:30:09.229654050 +0100
+@@ -1,4 +1,4 @@
+-#include "SDL_net/SDL_net.h"
++#include <SDL/SDL_net.h>
+ #include "main.h"
+ #include "server.h"
+ #include "string.h"
+diff -Nru castle-combat-0.7.4-orig/src/server.c castle-combat-0.7.4/src/server.c
+--- castle-combat-0.7.4-orig/src/server.c	2003-05-02 13:50:32.000000000 +0200
++++ castle-combat-0.7.4/src/server.c	2004-02-13 15:32:56.181006375 +0100
+@@ -1,4 +1,4 @@
+-#include "SDL_net/SDL_net.h"
++#include <SDL/SDL_net.h>
+ #include "netdefs.h"
+ #include "stdlib.h"
+ 

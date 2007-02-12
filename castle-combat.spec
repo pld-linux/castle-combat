@@ -1,5 +1,5 @@
 Summary:	castle-combat - enclose land and destroy your opponent's castle
-Summary(pl.UTF-8):   castle-combat - zdobądź ziemię i zniszcz zamki przeciwnika
+Summary(pl.UTF-8):	castle-combat - zdobądź ziemię i zniszcz zamki przeciwnika
 Name:		castle-combat
 Version:	0.7.4
 Release:	1

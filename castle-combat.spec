@@ -1,5 +1,5 @@
 Summary:	castle-combat - enclose land and destroy your opponent's castle
-Summary(pl):	castle-combat - zdob±d¼ ziemiê i zniszcz zamki przeciwnika
+Summary(pl.UTF-8):   castle-combat - zdobÄ…dÅº ziemiÄ™ i zniszcz zamki przeciwnika
 Name:		castle-combat
 Version:	0.7.4
 Release:	1
@@ -24,11 +24,11 @@ place cannons inside these walls, and shoot at the walls of their
 enemy(s). If a player can't build a complete wall around one of his
 castles, he loses. The last surviving player wins.
 
-%description -l pl
-castle-combat to gra, w której do czterech graczy buduje zamkowe mury,
-ustawia na nich armaty i strzela w mury swoich wrogów. Je¿eli gracz
-nie mo¿e otoczyæ ani jednego ze swoich zamków murami przegrywa.
-Wygrywa ostatni, który przetrwa.
+%description -l pl.UTF-8
+castle-combat to gra, w ktÃ³rej do czterech graczy buduje zamkowe mury,
+ustawia na nich armaty i strzela w mury swoich wrogÃ³w. JeÅ¼eli gracz
+nie moÅ¼e otoczyÄ‡ ani jednego ze swoich zamkÃ³w murami przegrywa.
+Wygrywa ostatni, ktÃ³ry przetrwa.
 
 %prep
 %setup -q

@@ -1,21 +1,17 @@
 Summary:	castle-combat - enclose land and destroy your opponent's castle
 Summary(pl.UTF-8):	castle-combat - zdobądź ziemię i zniszcz zamki przeciwnika
 Name:		castle-combat
-Version:	0.7.4
+Version:	0.8.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Games
-Source0:	http://user.cs.tu-berlin.de/~karlb/castle-combat/%{name}-%{version}.tar.gz
-# Source0-md5:	1cf225fbcfbee2b9a00757609fd054bb
+Source0:	http://dl.sourceforge.net/castle-combat/%{name}-%{version}.tar.gz
+# Source0-md5:	63380e9fc3d4d9de780b3cc52c822ea6
 URL:		http://user.cs.tu-berlin.de/~karlb/castle-combat/
-Patch0:		%{name}-SDL_net.patch
-BuildRequires:	SDL-devel
-BuildRequires:	SDL_net-devel
-BuildRequires:	SDL_mixer-devel
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libpng-devel
-BuildRequires:	zlib-devel
+BuildRequires:	python-Numeric
+BuildRequires:	python-TwistedCore
+BuildRequires:	python-pygame-devel
+BuildRequires:	rpm-pythonprov
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,27 +28,25 @@ Wygrywa ostatni, który przetrwa.
 
 %prep
 %setup -q
-%patch0 -p1
+%{__sed} -i 's@src@%{py_sitescriptdir}/src@' castle-combat.py
+%{__sed} -i 's@"data"@"%{py_sitescriptdir}/data"@' src/common.py
 
 %build
-%{__aclocal}
-%{__automake}
-%{__autoconf}
-%configure
-%{__make}
+python setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+python setup.py install \
+	--root=$RPM_BUILD_ROOT
+
+cp -r data/ $RPM_BUILD_ROOT%{py_sitescriptdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README TODO
+%doc README TODO
 %attr(755,root,root) %{_bindir}/*
-%{_datadir}/castle-combat
-%{_mandir}/man6/*
+%{py_sitescriptdir}/*

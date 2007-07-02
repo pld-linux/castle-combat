@@ -12,6 +12,7 @@ BuildRequires:	python-Numeric
 BuildRequires:	python-TwistedCore
 BuildRequires:	python-pygame-devel
 BuildRequires:	rpm-pythonprov
+BuildRequires:	sed >= 4.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -37,11 +38,13 @@ Wygrywa ostatni, który przetrwa.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{py_sitescriptdir}/%{name}
 
 %{__python} setup.py install \
 	--root=$RPM_BUILD_ROOT
 
 cp -r data $RPM_BUILD_ROOT%{py_sitescriptdir}/%{name}
+cp -r src $RPM_BUILD_ROOT%{py_sitescriptdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT

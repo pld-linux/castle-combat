@@ -12,6 +12,7 @@ BuildRequires:	python-Numeric
 BuildRequires:	python-TwistedCore
 BuildRequires:	python-pygame-devel
 BuildRequires:	rpm-pythonprov
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -28,8 +29,8 @@ Wygrywa ostatni, który przetrwa.
 
 %prep
 %setup -q
-%{__sed} -i 's@src@%{py_sitescriptdir}/src@' castle-combat.py
-%{__sed} -i 's@"data"@"%{py_sitescriptdir}/data"@' src/common.py
+%{__sed} -i 's@src@%{py_sitescriptdir}/%{name}/src@' castle-combat.py
+%{__sed} -i 's@"data"@"%{py_sitescriptdir}/%{name}/data"@' src/common.py
 
 %build
 %{__python} setup.py build
@@ -40,7 +41,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__python} setup.py install \
 	--root=$RPM_BUILD_ROOT
 
-cp -r data/ $RPM_BUILD_ROOT%{py_sitescriptdir}
+cp -r data $RPM_BUILD_ROOT%{py_sitescriptdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -49,4 +50,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README TODO
 %attr(755,root,root) %{_bindir}/*
-%{py_sitescriptdir}/*
+%{py_sitescriptdir}/%{name}

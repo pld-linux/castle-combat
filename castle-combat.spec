@@ -34,14 +34,13 @@ Wygrywa ostatni, który przetrwa.
 %{__sed} -i 's@"data"@"%{py_sitescriptdir}/%{name}/data"@' src/common.py
 
 %build
-%{__python} setup.py build
+%py_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{py_sitescriptdir}/%{name}
 
-%{__python} setup.py install \
-	--root=$RPM_BUILD_ROOT
+%py_install
 
 cp -r data $RPM_BUILD_ROOT%{py_sitescriptdir}/%{name}
 cp -r src $RPM_BUILD_ROOT%{py_sitescriptdir}/%{name}

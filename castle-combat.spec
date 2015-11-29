@@ -8,6 +8,7 @@ Group:		X11/Applications/Games
 Source0:	http://dl.sourceforge.net/castle-combat/%{name}-%{version}.tar.gz
 # Source0-md5:	63380e9fc3d4d9de780b3cc52c822ea6
 URL:		http://user.cs.tu-berlin.de/~karlb/castle-combat/
+BuildRequires:	rpmbuild(macros) >= 1.710
 BuildRequires:	python-Numeric
 BuildRequires:	python-TwistedCore
 BuildRequires:	python-pygame-devel
